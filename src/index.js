@@ -33,8 +33,11 @@ window.addEventListener("scroll", ()=>{
     if(this.scrollY > areaProjetos.offsetTop/2){
         areaProjetos.classList.remove("opacity-0")
         tituloProjetos.classList.add("slide-in-blurred-left")
-        arrayCards[i].classList.remove("visually-hidden")
-        arrayCards[i].classList.add("slide-in-blurred-right")
+        arrayCards.forEach((card)=>{
+            card.classList.remove("visually-hidden")
+            card.classList.add("slide-in-blurred-right")
+        })
+        
     }
     if(this.scrollY > areaProjetos.offsetTop/2){
         areaTechs.classList.remove("opacity-0")
