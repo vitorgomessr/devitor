@@ -23,14 +23,6 @@ const arrayCards = Array.from(cards)
 
 const setaSobre = document.getElementById("setaTudoSobre")
 
-function showCards(){
-    for(let i=0; i<arrayCards.length; i++){
-        arrayCards[i].classList.remove("visually-hidden")
-        arrayCards[i].classList.add("slide-in-blurred-right")
-    }
-}
-
-
 window.addEventListener("scroll", ()=>{
     if(this.scrollY > areaSobre.offsetTop/4){
         areaSobre.classList.remove("opacity-0")
@@ -41,7 +33,8 @@ window.addEventListener("scroll", ()=>{
     if(this.scrollY > areaProjetos.offsetTop/2){
         areaProjetos.classList.remove("opacity-0")
         tituloProjetos.classList.add("slide-in-blurred-left")
-        showCards()
+        arrayCards[i].classList.remove("visually-hidden")
+        arrayCards[i].classList.add("slide-in-blurred-right")
     }
     if(this.scrollY > areaProjetos.offsetTop/2){
         areaTechs.classList.remove("opacity-0")
