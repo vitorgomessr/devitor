@@ -93,3 +93,4 @@ arrayBotoes.forEach((el) => {
     el.addEventListener("click", botaoClick)
 })
 
+console.log("olá")
