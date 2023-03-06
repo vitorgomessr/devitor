@@ -1,3 +1,5 @@
+let isFirstScroll = true
+
 const areaHome = document.getElementById("home")
 const areaSobre = document.getElementById("areaSobre")
 const areaProjetos = document.getElementById("projetos")
@@ -15,52 +17,54 @@ const textos = document.getElementsByClassName("textos")
 const arrayBotoes = Array.from(botoesSobre)
 const arrayTextos = Array.from(textos)
 
+const cards = document.getElementById("cards")
+
 const tituloSobre = document.getElementById("tituloSobre")
 const tituloProjetos = document.getElementById("tituloProjetos")
 
-const cards = document.querySelectorAll(".card")
-const arrayCards = Array.from(cards)
-
 const setaSobre = document.getElementById("setaTudoSobre")
 
-window.addEventListener("scroll", ()=>{
-    if(this.scrollY > areaSobre.offsetTop/4){
-        areaSobre.classList.remove("opacity-0")
+function showScreensFirstTime(){
+    if (this.scrollY > areaSobre.offsetTop / 4) {
         tituloSobre.classList.add("slide-in-blurred-left-2")
         areaBotoes.classList.add("slide-in-blurred-left")
         setaSobre.classList.add("slide-in-blurred-top-2")
+        areaSobre.classList.remove("opacity-0")
     }
-    if(this.scrollY > areaProjetos.offsetTop/2){
-        areaProjetos.classList.remove("opacity-0")
+    if (this.scrollY > areaProjetos.offsetTop / 2) {
         tituloProjetos.classList.add("slide-in-blurred-left")
-        arrayCards.forEach((card)=>{
-            card.classList.remove("visually-hidden")
-            card.classList.add("slide-in-blurred-right")
-        })
-        
+        cards.classList.remove("visually-hidden")
+        areaProjetos.classList.remove("opacity-0")
     }
-    if(this.scrollY > areaProjetos.offsetTop/2){
+    if (this.scrollY > areaProjetos.offsetTop / 2) {
         areaTechs.classList.remove("opacity-0")
     }
-    if(this.scrollY > areaProjetos.offsetTop/2){
+    if (this.scrollY > areaProjetos.offsetTop / 2) {
         areaContato.classList.remove("opacity-0")
     }
+}
 
-    if(this.scrollY <= areaSobre.offsetTop/2){
+function showNavbarScrolling(){
+    if (this.scrollY <= areaSobre.offsetTop / 2) {
         navSobre.classList.remove("active")
         navHome.classList.add("active")
     }
-    if(this.scrollY > areaSobre.offsetTop/2 && this.scrollY < areaProjetos.offsetTop/2 + areaProjetos.offsetTop/4){
+    if (this.scrollY > areaSobre.offsetTop / 2 && this.scrollY < areaProjetos.offsetTop / 2 + areaProjetos.offsetTop / 4) {
         navHome.classList.remove("active")
         navProjetos.classList.remove("active")
         navSobre.classList.add("active")
     }
-    if(this.scrollY > areaProjetos.offsetTop/2 + areaProjetos.offsetTop/4){
+    if (this.scrollY > areaProjetos.offsetTop / 2 + areaProjetos.offsetTop / 4) {
         navSobre.classList.remove("active")
         navProjetos.classList.add("active")
+        if(isFirstScroll){
+            window.removeEventListener("scroll", showScreensFirstTime)
+        }
     }
-    
-})
+}
+
+const firstScrooling = window.addEventListener("scroll", showScreensFirstTime)
+const navbarSelected = window.addEventListener("scroll", showNavbarScrolling)
 
 function mostraTextoCerto(){    
     arrayTextos.forEach((el)=>{
@@ -93,4 +97,3 @@ arrayBotoes.forEach((el) => {
     el.addEventListener("click", botaoClick)
 })
 
-console.log("olá")
