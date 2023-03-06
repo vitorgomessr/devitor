@@ -96,4 +96,3 @@ function botaoClick(target){
 arrayBotoes.forEach((el) => {
     el.addEventListener("click", botaoClick)
 })
-
